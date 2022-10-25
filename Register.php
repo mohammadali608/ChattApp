@@ -1,3 +1,52 @@
+<?php 
+
+	require 'db.php';
+
+		$error="";
+		if(isset($_POST['submit'])){
+
+			$user=$_POST['username'];
+			$email=$_POST['email'];
+			$profilename="Images/".$_FILES['profile']['name'];
+			$path=$_FILES['profile']['tmp_name'];
+			$pass=$_POST['pass'];
+
+			
+			$query1="select * from tb_register where email='$email'";
+
+			$data1=$con->prepare($query1);
+
+			$data1->execute();
+
+			$result=$data1->get_result();
+
+			if ($result->num_rows>0) {
+			
+				  	$error="Email already exist";
+			}else{
+					
+			$query="INSERT INTO `tb_register`( `username`, `email`, `profile`, `password`, `active`) VALUES ('$user','$email','$profilename','$pass',0)";
+
+			$data=$con->prepare($query);
+			$data->execute();
+
+			move_uploaded_file($path,$profilename);
+
+			header('location:login.php');
+			exit;
+				$error="";
+			}
+			
+			
+			
+			
+
+		}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,9 +75,9 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+		<div class="container-login100" style="background-image: url('LoginContent/images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="" method="POST" enctype="multipart/form-data">
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span>
@@ -45,6 +94,7 @@
 					<div class="wrap-input100 validate-input" data-validate = "Enter Email">
 						<input class="input100" type="email" name="email" placeholder="Email">
 						<span class="focus-input100" data-placeholder="&#xf159;"></span>
+						<span class="text text-danger"><?php echo $error;?></span>
 					</div>
 
 					<div class="wrap-input100" >
@@ -59,7 +109,7 @@
 
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" type="submit" name="submit" value="submit">
 							Sign up
 						</button>
 					</div>
