@@ -1,3 +1,48 @@
+<?php 
+		require 'db.php';
+		session_start();
+
+			$error="";
+
+			if(isset($_POST['submit'])){
+
+						$email=$_POST['email'];
+						$pass=$_POST['pass'];
+
+					$query="select * from tb_register where email='$email' and password='$pass'";
+					
+					$data=$con->prepare($query);
+					$data->execute();
+
+					$result=$data->get_result();
+
+					$user=$result->fetch_assoc();
+
+					if ($result->num_rows>0) {
+						
+								$_SESSION['id']=$user['id'];
+								$_SESSION['name']=$user['username'];
+								$_SESSION['profile']=$user['profile'];
+
+
+								$query1="update tb_register set active=1 where id=".$user['id'];
+								$data1=$con->prepare($query1);
+								$data1->execute();
+								header('location:index.php');
+								exit;
+
+					}else{
+
+							$error="email or password incorect";
+					}
+
+
+
+			}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +73,7 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="" method="POST">
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span>
@@ -49,10 +94,11 @@
 
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" type="submit" name="submit" value="submit">
 							Login
 						</button>
 					</div>
+					<span class="text text-danger" ><?php echo $error;?></span>
 					<a href="register.php" class="text text-white" >Create new Account</a>
 
 				</form>
