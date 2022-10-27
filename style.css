@@ -1,0 +1,115 @@
+
+body {
+  background-image: url('https://images.unsplash.com/photo-1560568082-c15188aa6510?ixlib=rb-1.2.1ixid=eyJhcHBfaWQiOjEyMDd9auto=formatfit=cropw=3300q=80');
+  background-color: #3498db;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.user-profile{
+  background-color: aliceblue;
+  width:inherit;
+  height: 100px;  
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.user-profile img{
+  margin: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.user-profile span{
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
+.user-online{
+
+  background-color: aliceblue;
+  width:inherit;
+  height: 450px;  
+  border: 1px solid white;
+  border-radius: 10px;
+
+}
+
+.user-input{
+
+  width:inherit;
+  height: 50px;  
+  border: 1px solid black;
+  border-radius: 10px;
+
+}
+.user-input input{
+  height: inherit;
+  width: inherit;
+  border-radius: 10px;
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+}
+
+.user-input input::placeholder{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+}
+
+
+.users-chat-online{
+  overflow-y: scroll;
+  width:inherit;
+  height:400px ;
+}
+
+.users{
+  width:inherit;
+  height: 100px;  
+  border: 1px solid white;
+  border-radius: 10px;
+}
+.users:hover{
+  background-color: aquamarine;
+}
+
+.users-img img{
+  margin: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid black;
+}  
+
+.users-chat-online::-webkit-scrollbar{
+  width: 5px;
+  border-radius: 30px;
+  
+}
+.users-chat-online::-webkit-scrollbar-thumb{
+  background: rebeccapurple;
+}
+.users-img .offline {
+  position: relative;
+  height: 15px;
+  width: 15px;
+  background-color:red;
+  border-radius: 50%;
+  display: inline-block;
+  right:23px;
+  bottom: 10px;
+}
+
+.online {
+  position: relative;
+  height: 15px;
+  width: 15px;
+  background-color:green;
+  border-radius: 50%;
+  display: inline-block;
+  right:23px;
+  bottom: 10px;}
