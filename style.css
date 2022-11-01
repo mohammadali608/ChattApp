@@ -38,6 +38,7 @@ body {
 
 }
 
+
 .user-input{
 
   width:inherit;
@@ -113,3 +114,108 @@ body {
   display: inline-block;
   right:23px;
   bottom: 10px;}
+
+
+  .other-profile{
+    background-color: rgb(157, 204, 243);
+    width:inherit;
+    height: 100px;  
+    border-radius: 10px;
+   
+  }
+  .other-profile img{
+    margin: 10px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  .other-profile span{
+    font-weight: bold;
+    word-wrap: break-word;
+  }
+  
+  .user-info{
+    background-color: aliceblue;
+    width:inherit;
+    height: 440px;  
+    border: 1px solid white;
+    border-radius: 10px;
+  }
+
+  .user-msgs{
+    overflow-y: scroll;
+    width:inherit;
+    height: 370px;
+  }
+  
+  .containers {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .darker {
+    border-color: #ccc;
+    background-color: #ddd;
+  }
+  
+  .containers::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .containers img {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+
+  
+  
+  .containers img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+  }
+  
+  .time-right {
+    float: right;
+    color: #aaa;
+  }
+  
+  .time-left {
+    float: left;
+    color: #999;
+  }
+  
+  .containers .darker p{
+    text-align: right;
+  }
+
+  
+.user-msgs::-webkit-scrollbar{
+  width: 5px;
+  border-radius: 30px;
+  
+}
+.user-msgs::-webkit-scrollbar-thumb{
+  background: rebeccapurple;
+}
+
+button{
+  border: none;
+  font-size: 25px;
+  
+}
+
+#msg{
+  background-color: darkgrey;
+  font-size: 20px;
+}

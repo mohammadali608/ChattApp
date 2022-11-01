@@ -43,40 +43,150 @@
                   <input type="text" id="search" placeholder="search users">
               </div>
               <div class="users-chat-online">
+                
                 <div class="users mt-1">
                 </div>
                 
                 
               </div>
+              
+        
             </div>
         </div>
+        <div class="col-xl-8 col-lg-7 col-md-6 col-12">
+                <div class="other-profile mt-2">
+                  
+              </div>
+      <div class="user-info mt-2"> 
+            
+          <div class="user-msgs mt-2">
+              
+              
+              <div class="containers">
+              </div>
+              
+              
+          
+            </div>
+
+            <div class="row mt-2">
+              <div class="ml-3 col-md-9 col-9">
+                <input type="text" id="msg" placeholder="enter something" class="form-control">
+              </div>
+              <div class="col-md-2 col-2 float-left">
+                <button id="send">
+                  <i class="fa fa-paper-plane" aria-hidden="true"></i>
+
+                </button>  
+              </div>
+            </div>
+        </div>  
+
+        </div>
+      
+        </div>
+        
       </div>
   </div>  
 
 
 
 
-  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-  
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 <script>
 
-  $(document).ready(function(){
+$(document).ready(function(){
+
+
+
+
+
+      var reciever_id=0;
+
+      $(document).on("click",".users",function(){
+
+          var id=$(this).data('id');
+            if(id!=undefined){
+                
+             reciever_id=id; 
+              $.ajax({
+                url:"otherprofile.php",
+                type:"post",
+                data:{id:id},
+                success:function(data){
+
+                  $(".other-profile").html(data);
+                }
+              })
+            } 
+      })
+
+
+        setInterval(function(){
+
+            if(reciever_id!=0){
+
+              $.ajax({
+                  url:"users_msgs.php",
+                  type:"post",
+                  data:{reciever_id:reciever_id},
+                  success:function(data){
+
+                      $(".containers").html(data);
+                  }
+
+              })
+            }
+
+        },500)
+
+
+
+      $("#send").on('click',function(){
+
+          var msg=$('#msg').val();
+
+          $.ajax({
+            url:'insert.php',
+            type:'post',
+            data:{reciever_id:reciever_id,msg:msg},
+            success:function(){
+              alert('inserted');
+              $("#msg").val('');
+            }
+          })
+
+
+      })
 
     setInterval(function(){
-
+      
+      var search=$("#search").val();
+      
         
-      $.ajax({
+        if(search!=""){
+
+          $.ajax({
+          url:"useronline.php",
+          type:"post",
+          data:{search:search},
+          success:function(data){
+              $(".users").html(data)
+          }
+      })
+        }else{
+
+          $.ajax({
           url:"useronline.php",
           type:"get",
           success:function(data){
-
               $(".users").html(data)
-              
           }
-
       })
+        }
+      
+      
     },500);
-
   })
 </script>
 
